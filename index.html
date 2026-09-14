@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NanoBriefs - AI-Powered Nanoelectronics Research Intelligence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .hero .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hero .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card .icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        /* Articles Section */
+        .articles {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .articles-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .articles h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .article-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .article-card h3 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .article-meta span {
+            margin-right: 20px;
+        }
+
+        .article-abstract {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .article-metrics {
+            background: #e8eaf6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .article-metrics strong {
+            color: #667eea;
+        }
+
+        /* Signup Section */
+        .signup {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .signup h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .signup p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .signup-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+        }
+
+        .signup-form button {
+            padding: 15px 30px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .signup-form button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .signup-form {
+                flex-direction: column;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🔬 NanoBriefs</h1>
+        <p>AI-powered research intelligence platform for nanoelectronics. Get structured, actionable insights from cutting-edge papers in seconds.</p>
+        <a href="#signup" class="cta-button">Join Beta Waitlist →</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why NanoBriefs?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Get comprehensive analysis of complex nanoelectronics papers in under 30 seconds. No more spending hours deciphering dense academic jargon.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"></div>
+                <h3>Structured Insights</h3>
+                <p>Every brief includes research questions, key findings, nano-metrics, limitations, and practical implications - all in a standardized format.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🤖</div>
+                <h3>AI-Powered Analysis</h3>
+                <p>Powered by Claude AI, trained on thousands of nanoelectronics papers to understand domain-specific terminology and concepts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Articles Section -->
+    <section class="articles">
+        <div class="articles-container">
+            <h2>Sample Research Briefs</h2>
+
+            <div class="article-card">
+                <h3>Perovskite Nanocrystals for Optoelectronic Applications</h3>
+                <div class="article-meta">
+                    <span> Kovalenko, Stoumpos, Kanatzidis</span>
+                    <span> 2020</span>
+                    <span>🔗 arXiv:2008.01234</span>
+                </div>
+                <div class="article-abstract">
+                    Metal halide perovskites have emerged as revolutionary materials for optoelectronic applications due to their exceptional optical properties, defect tolerance, and ease of fabrication. This work investigates cesium lead halide (CsPbX3) nanocrystals synthesized via hot-injection and ligand-assisted reprecipitation methods.
+                </div>
+                <div class="article-metrics">
+                    <strong>Nano-Metrics:</strong> PLQY >90% | FWHM <20nm | Diffusion length >1 μm | Carrier lifetime >100 ns | Mobility >10 cm²/V·s
+                </div>
+            </div>
+
+            <div class="article-card">
+                <h3>Graphene-Based Field-Effect Transistor Biosensors</h3>
+                <div class="article-meta">
+                    <span>👥 Zhang, Li, Wang, Chen</span>
+                    <span>📅 2021</span>
+                    <span>🔗 arXiv:2106.02683</span>
+                </div>
+                <div class="article-abstract">
+                    Graphene-based field-effect transistors (GFETs) have emerged as promising platforms for label-free, real-time biosensing applications. Our device utilizes monolayer graphene synthesized via CVD on copper foil, functionalized with specific antibodies through pyrene-based linker molecules.
+                </div>
+                <div class="article-metrics">
+                    <strong>Nano-Metrics:</strong> LOD: 10 fg/mL | 1000x improvement over ELISA | 95% accuracy vs RT-PCR | Real-time kinetic analysis
+                </div>
+            </div>
+
+            <div class="article-card">
+                <h3>Memristive Devices for Neuromorphic Computing</h3>
+                <div class="article-meta">
+                    <span>👥 Chen, Kumar, Smith</span>
+                    <span>📅 2022</span>
+                    <span>🔗 arXiv:2203.08765</span>
+                </div>
+                <div class="article-abstract">
+                    Neuromorphic computing systems inspired by the human brain represent a paradigm shift from traditional von Neumann architectures. Memristive devices emulate synaptic plasticity and serve as key building blocks. We examine HfO2, Ta2O5, TiO2, and emerging 2D materials.
+                </div>
+                <div class="article-metrics">
+                    <strong>Nano-Metrics:</strong> On/off ratio: 10-10^6 | Endurance: 10^6-10^12 cycles | Retention: >10 years @ 85°C | Switching: <10 ns
+                </div>
+            </div>
+
+            <div class="article-card">
+                <h3>Two-Dimensional Materials for Beyond-Silicon Electronics</h3>
+                <div class="article-meta">
+                    <span>👥 Novoselov, Geim, Castro Neto</span>
+                    <span>📅 2020</span>
+                    <span>🔗 arXiv:2009.12345</span>
+                </div>
+                <div class="article-abstract">
+                    The relentless scaling of silicon-based transistors approaches fundamental physical limits. Two-dimensional semiconductors (MoS2, WS2, WSe2) offer exceptional electrostatic control, high carrier mobility, and mechanical flexibility for post-silicon electronics with gate lengths down to 5 nm.
+                </div>
+                <div class="article-metrics">
+                    <strong>Nano-Metrics:</strong> Mobility: 120 cm²/V·s | Subthreshold swing: 60 mV/dec | On/off ratio: >10^8 | Gate length: 5 nm
+                </div>
+            </div>
+
+            <div class="article-card">
+                <h3>Carbon Nanotube Electronics: From Materials to Circuits</h3>
+                <div class="article-meta">
+                    <span>👥 Dai, McEuen, Collins</span>
+                    <span>📅 2020</span>
+                    <span>🔗 arXiv:2007.09876</span>
+                </div>
+                <div class="article-abstract">
+                    Carbon nanotubes possess exceptional electronic properties including ballistic transport, high current-carrying capacity, and excellent thermal conductivity. We achieve >99.99% semiconducting CNT purity and demonstrate CMOS-compatible processing with thermal budget <400°C.
+                </div>
+                <div class="article-metrics">
+                    <strong>Nano-Metrics:</strong> On-current: 1 mA/μm | Transconductance: 1.5 mS/μm | Subthreshold swing: 70 mV/dec | Frequency: 1 GHz
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section class="signup" id="signup">
+        <h2>Join the Beta Waitlist</h2>
+        <p>Be among the first to access AI-powered nanoelectronics research intelligence. Limited spots available.</p>
+        <form class="signup-form" onsubmit="handleSubmit(event)">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Join Waitlist</button>
+        </form>
+        <p id="success-message" style="display: none; margin-top: 20px; font-size: 1.1em;">
+            ✅ Thanks! We'll notify you when beta access is available.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 NanoBriefs. Built for researchers, by researchers.</p>
+        <p>Contact: <a href="mailto:amir.ghadyani@gmail.com">amir.ghadyani@gmail.com</a></p>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input').value;
+            
+            // Here you would normally send to a backend
+            console.log('Email submitted:', email);
+            
+            // Show success message
+            document.getElementById('success-message').style.display = 'block';
+            event.target.reset();
+            
+            // In production, you would send this to:
+            // - Google Forms
+            // - Mailchimp
+            // - Your own backend
+            // - Formspree.io (free tier available)
+        }
+    </script>
+
+</body>
+</html>
