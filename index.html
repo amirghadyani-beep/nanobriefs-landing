@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NanoBriefs — AI-Powered Research Intelligence for Nanoelectronics, Photonics &amp; Quantum</title>
-<meta name="description" content="NanoBriefs turns nanoelectronics, photonics, and quantum computing papers into structured, source-traceable research briefs.">
+<meta name="description" content="NanoBriefs turns nanoelectronics, photonics, and quantum computing papers into structured, source-traceable research briefs. Look up any DOI instantly.">
 <style>
   :root {
     --primary: #667eea;
@@ -23,214 +23,174 @@
     font-family: 'Georgia', 'Iowan Old Style', serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
-  h1, h2, h3, .brand, .cta, button, .tag, label, nav a {
+  h1, h2, h3, .brand, .cta, button, .tag, label, nav a, .tab-btn, input {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
   a { color: inherit; }
 
-  /* Header */
   header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.1rem 2rem;
+    padding: 0.85rem 2rem;
     background: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
   }
-  .brand { display: flex; align-items: center; gap: 0.7rem; }
-  .brand img { height: 40px; }
-  .brand span { font-size: 1.3rem; font-weight: 700; color: var(--secondary); }
-  nav { display: flex; gap: 1.8rem; }
-  nav a { text-decoration: none; font-size: 0.95rem; font-weight: 500; color: var(--text); }
+  .brand { display: flex; align-items: center; gap: 0.6rem; }
+  .brand img { height: 34px; }
+  .brand span { font-size: 1.2rem; font-weight: 700; color: var(--secondary); }
+  nav { display: flex; gap: 1.6rem; }
+  nav a { text-decoration: none; font-size: 0.92rem; font-weight: 500; color: var(--text); }
   nav a:hover { color: var(--primary); }
 
-  /* Hero */
   .hero {
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 55%, var(--accent) 100%);
     color: #fff;
-    padding: 5.5rem 2rem 5rem;
+    padding: 2.4rem 2rem 2.6rem;
     text-align: center;
   }
   .hero h1 {
     font-family: Georgia, serif;
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
-    max-width: 780px;
-    margin: 0 auto 1.1rem;
+    font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+    max-width: 720px;
+    margin: 0 auto 0.5rem;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.3;
   }
-  .hero p {
+  .hero p.sub {
     max-width: 560px;
-    margin: 0 auto 2.2rem;
-    font-size: 1.15rem;
+    margin: 0 auto 1.5rem;
+    font-size: 1rem;
     opacity: 0.95;
   }
-  .cta {
-    display: inline-block;
+
+  .doi-search {
+    max-width: 560px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 12px;
+    padding: 1.1rem;
+  }
+  .doi-search-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.55rem;
+    opacity: 0.95;
+  }
+  .doi-search-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .doi-search-row input {
+    flex: 1;
+    min-width: 180px;
+    padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.95rem;
+  }
+  .doi-search-row button {
     background: #fff;
     color: var(--secondary);
-    padding: 0.9rem 2.1rem;
+    border: none;
+    padding: 0.75rem 1.4rem;
     border-radius: 8px;
     font-weight: 700;
-    text-decoration: none;
-    font-size: 1rem;
-    border: none;
     cursor: pointer;
-    transition: transform 0.15s ease;
+    font-size: 0.95rem;
   }
-  .cta:hover { transform: translateY(-2px); }
+  .doi-search-row button:hover { background: #f1f1f1; }
+  .doi-hint { font-size: 0.78rem; opacity: 0.85; margin-top: 0.6rem; }
+  .doi-result {
+    display: none;
+    margin-top: 0.9rem;
+    background: rgba(255,255,255,0.92);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    font-size: 0.88rem;
+    text-align: left;
+  }
 
-  /* Features */
-  .features {
-    max-width: 1000px;
-    margin: 4rem auto;
-    padding: 0 2rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.8rem;
-  }
-  .feature {
-    background: #fff;
-    border-radius: 10px;
-    padding: 1.8rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  }
-  .feature .icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
-  .feature h3 { font-family: Georgia, serif; font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--secondary); }
-  .feature p { font-size: 0.95rem; color: #555; }
+  .hero-links { margin-top: 1.2rem; display: flex; justify-content: center; gap: 1.6rem; flex-wrap: wrap; }
+  .hero-links a { color: #fff; text-decoration: underline; font-size: 0.88rem; opacity: 0.9; }
 
-  /* Section heading */
-  .section-heading {
-    max-width: 1000px;
-    margin: 4rem auto 1.5rem;
-    padding: 0 2rem;
-  }
-  .section-heading h2 {
-    font-family: Georgia, serif;
-    font-size: 2rem;
-    color: var(--secondary);
-  }
-  .section-heading p { color: #666; margin-top: 0.4rem; }
+  .section { max-width: 1000px; margin: 0 auto; padding: 3.2rem 2rem 0; }
+  .section-heading h2 { font-family: Georgia, serif; font-size: 1.7rem; color: var(--secondary); }
+  .section-heading p { color: #666; margin-top: 0.35rem; font-size: 0.95rem; }
 
-  /* Briefs */
-  .briefs {
-    max-width: 1000px;
-    margin: 0 auto 4rem;
-    padding: 0 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-  }
-  .brief-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 1.8rem 2rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  }
-  .brief-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.4rem;
-  }
-  .brief-title { font-family: Georgia, serif; font-size: 1.25rem; font-weight: 700; color: var(--text); text-decoration: none; }
-  .brief-title:hover { text-decoration: underline; }
-  .tag {
-    display: inline-block;
-    padding: 0.25rem 0.7rem;
+  .tabs { display: flex; gap: 0.6rem; margin: 1.4rem 0 1.6rem; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 0.55rem 1.1rem;
     border-radius: 20px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #fff;
-    white-space: nowrap;
+    border: 1.5px solid #ddd;
+    background: #fff;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    color: #555;
   }
+  .tab-btn.active.nano { background: var(--nano); border-color: var(--nano); color: #fff; }
+  .tab-btn.active.photonic { background: var(--photonic); border-color: var(--photonic); color: #fff; }
+  .tab-btn.active.computational { background: var(--computational); border-color: var(--computational); color: #fff; }
+
+  .tab-panel { display: none; flex-direction: column; gap: 1.4rem; }
+  .tab-panel.active { display: flex; }
+
+  .brief-card { background: #fff; border-radius: 10px; padding: 1.5rem 1.7rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .brief-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.3rem; }
+  .brief-title { font-family: Georgia, serif; font-size: 1.12rem; font-weight: 700; text-decoration: none; }
+  .brief-title:hover { text-decoration: underline; }
+  .tag { display: inline-block; padding: 0.22rem 0.65rem; border-radius: 20px; font-size: 0.74rem; font-weight: 700; color: #fff; white-space: nowrap; }
   .tag.nano { background: var(--nano); }
   .tag.photonic { background: var(--photonic); }
   .tag.computational { background: var(--computational); }
+  .brief-meta { font-size: 0.82rem; color: #666; margin-bottom: 0.8rem; }
+  .brief-card p { font-size: 0.9rem; }
+  .metrics-box { background: #f4f0fb; border-left: 3px solid var(--secondary); padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.85rem; margin-top: 0.5rem; }
 
-  .brief-meta { font-size: 0.88rem; color: #666; margin-bottom: 1rem; }
+  .jobs-teaser, .freelance-teaser { background: #fff; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .jobs-teaser h3, .freelance-teaser h3 { font-family: Georgia, serif; font-size: 1.3rem; color: var(--secondary); margin-bottom: 0.5rem; }
+  .jobs-teaser p, .freelance-teaser p { font-size: 0.92rem; color: #555; max-width: 560px; margin: 0 auto 1.2rem; }
+  .notify-row { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+  .notify-row input { padding: 0.65rem 0.9rem; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; width: 260px; max-width: 70vw; }
+  .notify-row button { background: var(--primary); color: #fff; border: none; padding: 0.65rem 1.2rem; border-radius: 8px; font-weight: 700; cursor: pointer; }
+  .badge-soon { display: inline-block; font-size: 0.72rem; font-weight: 700; color: var(--secondary); background: #f0eaf9; padding: 0.2rem 0.6rem; border-radius: 12px; margin-bottom: 0.8rem; }
 
-  .brief-section { margin-bottom: 0.9rem; }
-  .brief-section h4 { font-size: 0.85rem; text-transform: none; color: var(--secondary); margin-bottom: 0.3rem; font-family: -apple-system, sans-serif; font-weight: 700; }
-  .brief-section ul { padding-left: 1.2rem; font-size: 0.93rem; }
-  .brief-section p { font-size: 0.93rem; }
+  .premium { margin-top: 3.2rem; background: linear-gradient(135deg, #1e1b4b, #4c1d95 60%, #7e22ce); color: #fff; border-radius: 16px; padding: 2.6rem 2rem; max-width: 1000px; margin-left: auto; margin-right: auto; }
+  .premium-inner { max-width: 900px; margin: 0 auto; }
+  .premium h2 { font-family: Georgia, serif; font-size: 1.7rem; margin-bottom: 0.5rem; }
+  .premium > .premium-inner > p { opacity: 0.9; margin-bottom: 1.6rem; max-width: 600px; }
+  .premium-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 1.8rem; }
+  .premium-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 1.2rem; }
+  .premium-card .icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .premium-card h4 { font-size: 0.98rem; margin-bottom: 0.35rem; }
+  .premium-card p { font-size: 0.85rem; opacity: 0.88; }
+  .premium .cta-row { text-align: center; }
+  .premium .cta { display: inline-block; background: #fff; color: #4c1d95; padding: 0.85rem 2rem; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.98rem; }
+  .premium .cta:hover { opacity: 0.92; }
+  .premium .price-note { font-size: 0.8rem; opacity: 0.8; margin-top: 0.6rem; }
 
-  .metrics-box {
-    background: #f4f0fb;
-    border-left: 3px solid var(--secondary);
-    padding: 0.8rem 1rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-  }
-
-  .relevance-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 1rem; }
-  .relevance-bar { flex: 1; max-width: 180px; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
-  .relevance-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); }
-  .relevance-label { font-size: 0.85rem; color: #555; font-weight: 600; }
-
-  .note {
-    font-size: 0.85rem;
-    color: #888;
-    font-style: italic;
-  }
-
-  /* Signup */
-  .signup {
-    background: #fff;
-    border-top: 1px solid #eee;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-  .signup h2 { font-family: Georgia, serif; font-size: 1.8rem; color: var(--secondary); margin-bottom: 0.6rem; }
-  .signup p { color: #666; margin-bottom: 1.8rem; }
-  .signup-form { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; }
-  .signup-form input[type=email] {
-    padding: 0.85rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    width: 300px;
-    max-width: 80vw;
-  }
-  .signup-form button {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 0.85rem 1.6rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-  }
+  .signup { background: #fff; border-top: 1px solid #eee; margin-top: 3.2rem; padding: 3.2rem 2rem; text-align: center; }
+  .signup h2 { font-family: Georgia, serif; font-size: 1.6rem; color: var(--secondary); margin-bottom: 0.5rem; }
+  .signup p { color: #666; margin-bottom: 1.4rem; font-size: 0.95rem; }
+  .signup-form { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
+  .signup-form input[type=email] { padding: 0.8rem 1rem; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; width: 280px; max-width: 78vw; }
+  .signup-form button { background: var(--primary); color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
   .signup-form button:hover { background: var(--secondary); }
-  .success-msg {
-    display: none;
-    margin-top: 1rem;
-    color: #10b981;
-    font-weight: 600;
-  }
+  .success-msg { display: none; margin-top: 0.9rem; color: #10b981; font-weight: 600; font-size: 0.9rem; }
 
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.85rem;
-    color: #888;
-    background: #f0f0f2;
-  }
+  footer { text-align: center; padding: 1.8rem; font-size: 0.82rem; color: #888; background: #f0f0f2; }
 
   @media (max-width: 700px) {
-    .features { grid-template-columns: 1fr; }
     nav { display: none; }
+    .premium-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -242,267 +202,197 @@
     <span>NanoBriefs</span>
   </div>
   <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#briefs">Briefs</a>
+    <a href="#jobs">Jobs</a>
+    <a href="#freelance">Freelance</a>
+    <a href="#premium">Premium</a>
   </nav>
 </header>
 
 <section class="hero" id="home">
   <h1>AI-powered research intelligence for nanoelectronics, photonics, and quantum computing</h1>
-  <p>Structured, source-traceable briefs from the papers that matter — so you spend less time searching and more time deciding what to investigate next.</p>
-  <a href="#signup" class="cta">Join Beta Waitlist</a>
-</section>
+  <p class="sub">Structured, source-traceable briefs from the papers that matter.</p>
 
-<section class="features" id="about">
-  <div class="feature">
-    <div class="icon">📚</div>
-    <h3>Too many papers, too little time</h3>
-    <p>We monitor top journals and repositories daily so you don't have to scan every table of contents yourself.</p>
+  <div class="doi-search">
+    <div class="doi-search-label">🔍 LOOK UP ANY PAPER BY DOI</div>
+    <form class="doi-search-row" id="doi-form">
+      <input type="text" id="doi-input" placeholder="e.g. 10.1038/s41565-025-02013-z" required>
+      <button type="submit">Get Brief</button>
+    </form>
+    <div class="doi-hint">Free members: 3 lookups/day &middot; Subscribers: 10/day</div>
+    <div class="doi-result" id="doi-result"></div>
   </div>
-  <div class="feature">
-    <div class="icon">📏</div>
-    <h3>Metrics, not just prose</h3>
-    <p>Nano-Metrics are extracted with source location and a confidence label — mobility, on/off ratio, coherence time, and more, ready to compare.</p>
-  </div>
-  <div class="feature">
-    <div class="icon">✅</div>
-    <h3>Verified, not just generated</h3>
-    <p>Every brief separates what a paper actually reports from our interpretation, and flags anything we couldn't confirm.</p>
+
+  <div class="hero-links">
+    <a href="#briefs">Browse recent briefs ↓</a>
+    <a href="#premium">See what subscribers get →</a>
   </div>
 </section>
 
-<div class="section-heading">
-  <h2>Sample research briefs</h2>
-  <p>Five real, recent papers — reviewed and structured the way every NanoBriefs entry will be.</p>
-</div>
+<section class="section" id="briefs">
+  <div class="section-heading">
+    <h2>Recent research briefs</h2>
+    <p>Five real, recently published papers — reviewed and structured the way every NanoBriefs entry is.</p>
+  </div>
 
-<section class="briefs">
+  <div class="tabs">
+    <button class="tab-btn active nano" data-tab="nano">Nanoelectronic</button>
+    <button class="tab-btn photonic" data-tab="photonic">Photonic</button>
+    <button class="tab-btn computational" data-tab="computational">Computing</button>
+  </div>
 
-  <!-- Brief 1 -->
-  <div class="brief-card">
-    <div class="brief-top">
-      <a class="brief-title" href="https://doi.org/10.1038/s41565-025-02013-z" target="_blank" rel="noopener">Molecular crystal memristors</a>
-      <span class="tag nano">Nano Electronic</span>
-    </div>
-    <div class="brief-meta">Qin, L., Guan, P., Shao, J. et al. &middot; Nature Nanotechnology, 2025, Vol. 20, pp. 1641–1647 &middot; DOI: 10.1038/s41565-025-02013-z</div>
-
-    <div class="brief-section">
-      <h4>Research Question</h4>
-      <p>Can a memristor channel material be found that resists the structural degradation which limits the energy efficiency and endurance of existing resistive-switching devices?</p>
-    </div>
-    <div class="brief-section">
-      <h4>Key Findings</h4>
-      <ul>
-        <li>A molecular-crystal channel material (Sb₂O₃, with cage-like units linked by van der Waals forces) lets ions migrate through intermolecular spaces without disrupting the crystal structure.</li>
-        <li>This preserves device integrity across extensive switching cycles, unlike conventional filamentary memristors.</li>
-        <li>The device supports both non-volatile and volatile resistive switching, reconfigurable across scales from micrometres to nanometres.</li>
-      </ul>
-    </div>
-    <div class="brief-section">
-      <h4>Nano-Metrics</h4>
-      <div class="metrics-box">
-        Switching energy: ~26 zJ per operation &nbsp;|&nbsp; Endurance: &gt;10⁹ switching cycles
+  <div class="tab-panel active" id="panel-nano">
+    <div class="brief-card">
+      <div class="brief-top">
+        <a class="brief-title" href="https://doi.org/10.1038/s41565-025-02013-z" target="_blank" rel="noopener">Molecular crystal memristors</a>
+        <span class="tag nano">Nano Electronic</span>
       </div>
+      <div class="brief-meta">Qin, L., Guan, P., Shao, J. et al. &middot; Nature Nanotechnology, 2025, Vol. 20, pp. 1641–1647 &middot; DOI: 10.1038/s41565-025-02013-z</div>
+      <p>A molecular-crystal channel material lets ions migrate through intermolecular spaces without disrupting the crystal structure, preserving device integrity across extensive switching cycles — unlike conventional filamentary memristors.</p>
+      <div class="metrics-box">Switching energy: ~26 zJ/op &nbsp;|&nbsp; Endurance: &gt;10⁹ cycles</div>
     </div>
-    <div class="brief-section">
-      <h4>Limitations</h4>
-      <p>The abstract does not report integration density or yield across large arrays, which matters for practical neuromorphic hardware at scale.</p>
-    </div>
-    <div class="brief-section">
-      <h4>Practical Implications</h4>
-      <p>Ultra-low switching energy combined with high endurance is directly relevant to in-memory computing hardware for neuromorphic AI accelerators.</p>
-    </div>
-    <div class="relevance-row">
-      <span class="relevance-label">Relevance: 9/10</span>
-      <div class="relevance-bar"><div class="relevance-fill" style="width:90%"></div></div>
+    <div class="brief-card">
+      <div class="brief-top">
+        <a class="brief-title" href="https://doi.org/10.1021/acsnano.5c10639" target="_blank" rel="noopener">High-On/Off-Ratio Vertical Transistors with Defect-Engineered MoSe₂ and van der Waals VSe₂ Contacts</a>
+        <span class="tag nano">Nano Electronic</span>
+      </div>
+      <div class="brief-meta">Choi, D.E. et al. &middot; ACS Nano, Oct 2025, 19(40), pp. 35601–35608 &middot; DOI: 10.1021/acsnano.5c10639</div>
+      <p>Defect engineering of MoSe₂ combined with van der Waals VSe₂ contacts suppresses leakage current through gate-field-free regions, targeting a structural limitation that has held back vertical 2D transistor scaling.</p>
+      <div class="metrics-box">On/off ratio: reported as high — exact figure flagged for verification against full text.</div>
     </div>
   </div>
 
-  <!-- Brief 2 -->
-  <div class="brief-card">
-    <div class="brief-top">
-      <a class="brief-title" href="https://doi.org/10.1021/acsnano.5c10639" target="_blank" rel="noopener">High-On/Off-Ratio Vertical Transistors with Defect-Engineered MoSe₂ and van der Waals VSe₂ Contacts</a>
-      <span class="tag nano">Nano Electronic</span>
-    </div>
-    <div class="brief-meta">Choi, D.E., Park, H., Choi, H., Choi, S.Y., Kang, B., Kim, H.H. &middot; ACS Nano, 14 Oct 2025, 19(40), pp. 35601–35608 &middot; DOI: 10.1021/acsnano.5c10639</div>
-
-    <div class="brief-section">
-      <h4>Research Question</h4>
-      <p>Can leakage current through gate-field-free regions in 2D vertical field-effect transistors (VFETs) be suppressed to unlock sub-nanometer channel lengths?</p>
-    </div>
-    <div class="brief-section">
-      <h4>Key Findings</h4>
-      <ul>
-        <li>Defect engineering of MoSe₂ combined with van der Waals VSe₂ contacts suppresses leakage current through gate-field-free regions under zero gate bias.</li>
-        <li>The design achieves a high on/off current ratio in an n-channel MoSe₂ VFET architecture.</li>
-        <li>The approach targets a structural limitation (rather than a materials-purity limitation) that has held back vertical 2D transistor performance.</li>
-      </ul>
-    </div>
-    <div class="brief-section">
-      <h4>Nano-Metrics</h4>
-      <div class="metrics-box">
-        On/off current ratio: reported as high, exact figure not captured in the publicly available abstract — flagged for follow-up against the full text.
+  <div class="tab-panel" id="panel-photonic">
+    <div class="brief-card">
+      <div class="brief-top">
+        <a class="brief-title" href="https://doi.org/10.1038/s41566-025-01633-0" target="_blank" rel="noopener">Three-dimensional photonic integration for ultra-low-energy, high-bandwidth interchip data links</a>
+        <span class="tag photonic">Photonic</span>
       </div>
-      <p class="note">Per our verification policy, we do not invent numbers our pipeline hasn't confirmed against the source.</p>
+      <div class="brief-meta">Nature Photonics, 21 Mar 2025 &middot; DOI: 10.1038/s41566-025-01633-0</div>
+      <p>A 3D-integrated photonic-electronic interface targets the interconnect bottleneck in AI accelerator and data-center architectures, where electrical I/O is becoming an energy and bandwidth limiter.</p>
+      <div class="metrics-box">800 Gb/s across 80 channels &nbsp;|&nbsp; Tx: 50 fJ/bit &nbsp;|&nbsp; Rx: 70 fJ/bit</div>
     </div>
-    <div class="brief-section">
-      <h4>Limitations</h4>
-      <p>Vertical channel lengths below one nanometer raise open questions about reproducibility and yield that a single-device demonstration does not resolve.</p>
-    </div>
-    <div class="brief-section">
-      <h4>Practical Implications</h4>
-      <p>Sub-nanometer vertical channels could extend transistor scaling past the limits of conventional planar 2D FETs.</p>
-    </div>
-    <div class="relevance-row">
-      <span class="relevance-label">Relevance: 7/10</span>
-      <div class="relevance-bar"><div class="relevance-fill" style="width:70%"></div></div>
+    <div class="brief-card">
+      <div class="brief-top">
+        <a class="brief-title" href="https://doi.org/10.1038/s41566-024-01579-9" target="_blank" rel="noopener">Non-Hermitian hybrid silicon photonic switching</a>
+        <span class="tag photonic">Photonic</span>
+      </div>
+      <div class="brief-meta">Feng, X. et al. &middot; Nature Photonics, 2025 &middot; DOI: 10.1038/s41566-024-01579-9</div>
+      <p>Reframes optical loss — normally something to avoid — as a usable design resource, demonstrating a hybrid silicon photonic switch built around non-Hermitian (gain/loss-engineered) dynamics.</p>
+      <div class="metrics-box">Insertion-loss / switching-speed figures flagged for verification against full text.</div>
     </div>
   </div>
 
-  <!-- Brief 3 -->
-  <div class="brief-card">
-    <div class="brief-top">
-      <a class="brief-title" href="https://doi.org/10.1038/s41566-025-01633-0" target="_blank" rel="noopener">Three-dimensional photonic integration for ultra-low-energy, high-bandwidth interchip data links</a>
-      <span class="tag photonic">Photonic</span>
-    </div>
-    <div class="brief-meta">Nature Photonics, 21 Mar 2025 &middot; DOI: 10.1038/s41566-025-01633-0</div>
-
-    <div class="brief-section">
-      <h4>Research Question</h4>
-      <p>Can photonics and electronics be integrated in three dimensions to deliver a chip-to-chip data interface that is both energy-efficient and dense enough for AI-era data centers?</p>
-    </div>
-    <div class="brief-section">
-      <h4>Key Findings</h4>
-      <ul>
-        <li>A 3D-integrated photonic-electronic interface achieves an 800 Gb/s aggregate data rate across 80 communication channels.</li>
-        <li>Energy consumption reaches tens of femtojoules per transmitted bit — well below typical chip-scale transceiver energy budgets.</li>
-        <li>Transmitter and receiver front ends individually achieve 50 fJ/bit and 70 fJ/bit respectively, at 10 Gb/s per channel.</li>
-      </ul>
-    </div>
-    <div class="brief-section">
-      <h4>Nano-Metrics</h4>
-      <div class="metrics-box">
-        Aggregate bandwidth: 800 Gb/s &nbsp;|&nbsp; Channels: 80 &nbsp;|&nbsp; Tx energy: 50 fJ/bit &nbsp;|&nbsp; Rx energy: 70 fJ/bit
+  <div class="tab-panel" id="panel-computational">
+    <div class="brief-card">
+      <div class="brief-top">
+        <a class="brief-title" href="https://doi.org/10.1103/42w2-6ccy" target="_blank" rel="noopener">Single-Qubit Gates with Errors at the 10⁻⁷ Level</a>
+        <span class="tag computational">Computational</span>
       </div>
-    </div>
-    <div class="brief-section">
-      <h4>Limitations</h4>
-      <p>The abstract does not detail manufacturing yield or cost at scale for the 3D bonding process used.</p>
-    </div>
-    <div class="brief-section">
-      <h4>Practical Implications</h4>
-      <p>Directly targets the interconnect bottleneck in AI accelerator and data-center architectures, where electrical I/O is becoming an energy and bandwidth limiter.</p>
-    </div>
-    <div class="relevance-row">
-      <span class="relevance-label">Relevance: 9/10</span>
-      <div class="relevance-bar"><div class="relevance-fill" style="width:90%"></div></div>
+      <div class="brief-meta">Smith, M.C., Leu, A.D., Miyanishi, K., Gely, M.F., Lucas, D.M. &middot; Physical Review Letters, Jun 2025, Vol. 134, 230601 &middot; DOI: 10.1103/42w2-6ccy</div>
+      <p>A trapped-ion ⁴³Ca⁺ qubit achieves a new record for single-qubit gate fidelity, at room temperature and without magnetic shielding, using electronic rather than laser control — simplifying the engineering path toward scalable ion-trap chips.</p>
+      <div class="metrics-box">Gate error: 1.5(4) × 10⁻⁷ per Clifford gate &nbsp;|&nbsp; Gate time: 4.4–35 µs</div>
     </div>
   </div>
+</section>
 
-  <!-- Brief 4 -->
-  <div class="brief-card">
-    <div class="brief-top">
-      <a class="brief-title" href="https://doi.org/10.1038/s41566-024-01579-9" target="_blank" rel="noopener">Non-Hermitian hybrid silicon photonic switching</a>
-      <span class="tag photonic">Photonic</span>
-    </div>
-    <div class="brief-meta">Feng, X., Wu, T., Gao, Z., Zhao, H., Wu, S., Zhang, Y., Ge, L., Feng, L. &middot; Nature Photonics, 2025 &middot; DOI: 10.1038/s41566-024-01579-9</div>
-
-    <div class="brief-section">
-      <h4>Research Question</h4>
-      <p>Can non-Hermitian physics — where a system's gain and loss are engineered together rather than avoided — be used as a design principle for compact, high-performance silicon photonic switches?</p>
-    </div>
-    <div class="brief-section">
-      <h4>Key Findings</h4>
-      <ul>
-        <li>The team demonstrates a hybrid silicon photonic switch whose operation is built around non-Hermitian (gain/loss-engineered) dynamics rather than conventional loss-avoidant design.</li>
-        <li>This reframes a previously undesirable optical effect (loss) as a usable design resource for switching.</li>
-      </ul>
-    </div>
-    <div class="brief-section">
-      <h4>Nano-Metrics</h4>
-      <div class="metrics-box">
-        Specific insertion-loss / switching-speed figures were not available in the public abstract — flagged for follow-up against the full text once accessible.
-      </div>
-      <p class="note">Per our verification policy, we do not invent numbers our pipeline hasn't confirmed against the source.</p>
-    </div>
-    <div class="brief-section">
-      <h4>Limitations</h4>
-      <p>Non-Hermitian photonic devices have historically faced fabrication-tolerance challenges; how well this design generalizes outside the demonstrated conditions is not yet clear from the abstract.</p>
-    </div>
-    <div class="brief-section">
-      <h4>Practical Implications</h4>
-      <p>Relevant to next-generation optical switching fabrics for data-center and AI interconnects, an area of active silicon-photonics competition.</p>
-    </div>
-    <div class="relevance-row">
-      <span class="relevance-label">Relevance: 6/10</span>
-      <div class="relevance-bar"><div class="relevance-fill" style="width:60%"></div></div>
-    </div>
+<section class="section" id="jobs">
+  <div class="jobs-teaser">
+    <div class="badge-soon">COMING IN PHASE 3</div>
+    <h3>Academic job listings</h3>
+    <p>PhD, Master's, and postdoc positions in nanoelectronics, photonics, and quantum computing, pulled automatically from specialist academic job boards and sorted into the same three categories as our briefs.</p>
+    <form class="notify-row">
+      <input type="email" placeholder="you@university.edu" required>
+      <button type="submit">Notify me when this launches</button>
+    </form>
   </div>
+</section>
 
-  <!-- Brief 5 -->
-  <div class="brief-card">
-    <div class="brief-top">
-      <a class="brief-title" href="https://doi.org/10.1103/42w2-6ccy" target="_blank" rel="noopener">Single-Qubit Gates with Errors at the 10⁻⁷ Level</a>
-      <span class="tag computational">Computational</span>
-    </div>
-    <div class="brief-meta">Smith, M.C., Leu, A.D., Miyanishi, K., Gely, M.F., Lucas, D.M. &middot; Physical Review Letters, 12 Jun 2025, Vol. 134, 230601 &middot; DOI: 10.1103/42w2-6ccy</div>
+<section class="section" id="freelance">
+  <div class="freelance-teaser">
+    <div class="badge-soon">COMING IN PHASE 4</div>
+    <h3>Specialist freelance marketplace</h3>
+    <p>Connect with domain experts for nanoelectronics writing, editing, and calculations — vetted for quality and rated by the research community.</p>
+    <form class="notify-row">
+      <input type="email" placeholder="you@university.edu" required>
+      <button type="submit">Notify me when this launches</button>
+    </form>
+  </div>
+</section>
 
-    <div class="brief-section">
-      <h4>Research Question</h4>
-      <p>How low can single-qubit gate error rates be pushed in a trapped-ion platform using practical, scalable (electronic rather than laser) control?</p>
-    </div>
-    <div class="brief-section">
-      <h4>Key Findings</h4>
-      <ul>
-        <li>A trapped-ion ⁴³Ca⁺ hyperfine clock qubit achieves single-qubit gate errors at the sub-part-per-million level.</li>
-        <li>Minimum benchmarked error per Clifford gate: 1.5(4) × 10⁻⁷ — a new record for any quantum computing platform.</li>
-        <li>Achieved at room temperature, without magnetic shielding, using electronic (not laser) control — simplifying the engineering requirements relative to laser-driven approaches.</li>
-      </ul>
-    </div>
-    <div class="brief-section">
-      <h4>Nano-Metrics</h4>
-      <div class="metrics-box">
-        Gate error: 1.5(4) × 10⁻⁷ per Clifford gate &nbsp;|&nbsp; Gate time range: 4.4–35 µs &nbsp;|&nbsp; Qubit: trapped ⁴³Ca⁺ ion
+<section class="premium" id="premium">
+  <div class="premium-inner">
+    <h2>See more with a NanoBriefs subscription</h2>
+    <p>Free briefs are just the entry point. Subscribers unlock the tools built for researchers who need to move fast.</p>
+    <div class="premium-grid">
+      <div class="premium-card">
+        <div class="icon">🗺️</div>
+        <h4>Semiconductor industry heatmap</h4>
+        <p>Visualize where companies and labs are concentrating R&amp;D effort across nanoelectronics sub-fields.</p>
+      </div>
+      <div class="premium-card">
+        <div class="icon">📊</div>
+        <h4>Nano-Metrics database</h4>
+        <p>Search and compare extracted metrics — mobility, on/off ratio, coherence time — across every paper we've processed.</p>
+      </div>
+      <div class="premium-card">
+        <div class="icon">🔗</div>
+        <h4>Citation &amp; comparison graph</h4>
+        <p>See how papers relate, and compare experimental results side by side, with warnings for non-comparable conditions.</p>
       </div>
     </div>
-    <div class="brief-section">
-      <h4>Limitations</h4>
-      <p>The result is for a single qubit; two-qubit entangling gates — needed for full computation — remain roughly three orders of magnitude less accurate (~99.9% fidelity in the best current demonstrations).</p>
-    </div>
-    <div class="brief-section">
-      <h4>Practical Implications</h4>
-      <p>Electronic (non-laser) control at this fidelity is cheaper and easier to scale in ion-trap chips, a meaningful step toward practical fault-tolerant quantum computing.</p>
-    </div>
-    <div class="relevance-row">
-      <span class="relevance-label">Relevance: 10/10</span>
-      <div class="relevance-bar"><div class="relevance-fill" style="width:100%"></div></div>
+    <div class="cta-row">
+      <a href="#signup" class="cta">Join the Beta Waitlist</a>
+      <div class="price-note">Researcher plan: $15–19/mo &middot; Lab plan: $79–99/mo</div>
     </div>
   </div>
-
 </section>
 
 <section class="signup" id="signup">
   <h2>Join the beta waitlist</h2>
   <p>Be first to try NanoBriefs when the full pipeline launches.</p>
-  <form class="signup-form" id="waitlist-form" action="https://formspree.io/f/xrpgwdkn" method="POST">
+  <form class="signup-form" id="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
     <input type="email" name="email" placeholder="you@university.edu" required>
     <button type="submit">Join Waitlist</button>
   </form>
   <p class="success-msg" id="success-msg">Thanks — you're on the list. We'll be in touch.</p>
 </section>
 
-<footer id="contact">
+<footer>
   &copy; 2026 NanoBriefs &middot; Contact: amir.ghadyani@gmail.com
 </footer>
 
 <script>
-  document.getElementById('waitlist-form').addEventListener('submit', function(e) {
-    // Replace the form action above with your real Formspree endpoint.
-    // This just shows a success message optimistically; remove if you want
-    // to wait for Formspree's actual response before showing it.
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+      document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.getElementById('doi-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var doi = document.getElementById('doi-input').value.trim();
+    var resultBox = document.getElementById('doi-result');
+    resultBox.style.display = 'block';
+    resultBox.innerHTML =
+      '<strong>DOI lookup is launching in Phase 2.</strong><br>' +
+      'You searched: ' + doi + '. Join the waitlist below and we will email you the brief ' +
+      'the moment this feature goes live.';
+  });
+
+  document.getElementById('waitlist-form').addEventListener('submit', function (e) {
     var msg = document.getElementById('success-msg');
     setTimeout(function () { msg.style.display = 'block'; }, 400);
+  });
+
+  document.querySelectorAll('.notify-row').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.innerHTML = '<p style="color:#10b981;font-weight:600;">Thanks — we\'ll email you when this launches.</p>';
+    });
   });
 </script>
 
